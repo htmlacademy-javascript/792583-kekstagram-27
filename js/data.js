@@ -1,9 +1,10 @@
-import { getRandomPositiveInteger } from '/js/util.js';
-import { getRandomArrayElement } from '/js/util.js';
-import { generateCommentAvatar } from '/js/util.js';
-import { generatePictureId } from '/js/util.js';
-import { generadeCommentId } from '/js/util.js';
-import { generatePicturePhoto } from '/js/util.js';
+import {
+  getRandomPositiveInteger,
+  getRandomArrayElement,
+  generatePictureId,
+  generadeCommentId,
+  generatePicturePhoto,
+} from './util.js';
 
 const MESSAGES = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -12,7 +13,6 @@ const MESSAGES = ['Всё отлично!',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
-
 const NAMES = [
   'Александр',
   'Виктория',
@@ -24,25 +24,37 @@ const NAMES = [
   'Светлана',
   'Владислав',
 ];
+const DESCRIPTIONS = [
+  'Просто фото',
+  'Тестирую новый iPhone 14 Pro Max',
+  'Хотели бы оказаться на моем месте?:D',
+  'Ловите очередной шедевр',
+  'А ты смог бы снять лучше?',
+  'Надо повторить',
+  'Вот так вот.',
+];
 const COUNT_OBJECTS = 25;
 
-const createArrayComments = () =>
-({
+const createComments = () => ({
   id: generadeCommentId(),
-  avatar: `img/avatar-${generateCommentAvatar()}.svg`,
+  avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
 
+
 const getRandomObject = () => ({
   id: generatePictureId(),
   url: `photos/${generatePicturePhoto()}.jpg`,
-  description: 'Кексограм одобряет',
+  description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomPositiveInteger(15, 200),
-  comments: createArrayComments(),
+  comments: Array.from({ length: getRandomPositiveInteger(1, 6) }, createComments)
 });
 
-const similarPicture = Array.from({ length: COUNT_OBJECTS }, getRandomObject);
+const getArrayPictures = Array.from({ length: COUNT_OBJECTS }, getRandomObject);
 
-export { similarPicture };
-export { COUNT_OBJECTS };
+export {
+  getArrayPictures,
+  COUNT_OBJECTS,
+  getRandomPositiveInteger
+};
