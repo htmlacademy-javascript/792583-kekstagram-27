@@ -42,13 +42,13 @@ const createComments = () => ({
   name: getRandomArrayElement(NAMES),
 });
 
-
+const getArrayComments = Array.from({ length: getRandomPositiveInteger(1, 6) }, createComments);
 const getRandomObject = () => ({
   id: generatePictureId(),
   url: `photos/${generatePicturePhoto()}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomPositiveInteger(15, 200),
-  comments: Array.from({ length: getRandomPositiveInteger(1, 6) }, createComments)
+  comments: Array.from({ length: getRandomPositiveInteger(1, 6) }, createComments),
 });
 
 const getArrayPictures = Array.from({ length: COUNT_OBJECTS }, getRandomObject);
@@ -56,5 +56,6 @@ const getArrayPictures = Array.from({ length: COUNT_OBJECTS }, getRandomObject);
 export {
   getArrayPictures,
   COUNT_OBJECTS,
-  getRandomPositiveInteger
+  getRandomPositiveInteger,
+  getArrayComments,
 };
