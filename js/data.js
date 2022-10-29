@@ -1,9 +1,10 @@
 import {
   getRandomPositiveInteger,
   getRandomArrayElement,
-  generatePictureId,
-  generadeCommentId,
-  generatePicturePhoto,
+  createRandomIdFromRangeGenerator
+  // generatePictureId,
+  // generadeCommentId,
+  // generatePicturePhoto,
 } from './util.js';
 
 const MESSAGES = ['Всё отлично!',
@@ -34,21 +35,29 @@ const DESCRIPTIONS = [
   'Вот так вот.',
 ];
 const COUNT_OBJECTS = 25;
+const COUNT_MIN_INTEGER = 1;
+const COUNT_MAX_INTEGER = 6;
+const generateCommentAvatar = getRandomPositiveInteger(COUNT_MIN_INTEGER, COUNT_MAX_INTEGER);
+const generatePictureId = createRandomIdFromRangeGenerator(COUNT_MIN_INTEGER, COUNT_OBJECTS);
+const generadeCommentId = createRandomIdFromRangeGenerator(COUNT_MIN_INTEGER, 1000);
+const generatePicturePhoto = createRandomIdFromRangeGenerator(COUNT_MIN_INTEGER, COUNT_OBJECTS);
 
 const createComments = () => ({
   id: generadeCommentId(),
-  avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+  avatar: `img/avatar-${getRandomPositiveInteger(COUNT_MIN_INTEGER, COUNT_MAX_INTEGER)}.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
 
-const getArrayComments = Array.from({ length: getRandomPositiveInteger(1, 6) }, createComments);
-const getRandomObject = () => ({
-  id: generatePictureId(),
-  url: `photos/${generatePicturePhoto()}.jpg`,
+const getArrayComments = Array.from({ length: getRandomPositiveInteger(COUNT_MIN_INTEGER, COUNT_MAX_INTEGER) }, createComments);
+const getRandomObject = (elem, number) => ({
+  // id: generatePictureId(),
+  id: number + 1,
+  // url: `photos/${generatePicturePhoto()}.jpg`,
+  url: `photos/${number + 1}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomPositiveInteger(15, 200),
-  comments: Array.from({ length: getRandomPositiveInteger(1, 6) }, createComments),
+  comments: Array.from({ length: getRandomPositiveInteger(COUNT_MIN_INTEGER, COUNT_MAX_INTEGER) }, createComments),
 });
 
 const getArrayPictures = Array.from({ length: COUNT_OBJECTS }, getRandomObject);

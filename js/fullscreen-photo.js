@@ -8,7 +8,7 @@ const documentBody = document.querySelector('body');
 const blockCountComment = document.querySelector('.social__comment-count');
 const blockCommentLoader = document.querySelector('.comments-loader');
 
-for (let picture of pictures) {
+for (const picture of pictures) {
 
   picture.addEventListener('click', () => {
     hidden.classList.remove('hidden');
@@ -17,13 +17,13 @@ for (let picture of pictures) {
     blockCommentLoader.classList.add('hidden');
 
     const pictureImage = document.querySelector('.big-picture__img').querySelector('img');
-    console.log(pictureImage);
     getArrayPictures.forEach(({ url, likes, comments, description }) => {
       pictureImage.setAttribute('src', url);
       pictureImage.setAttribute('alt', description);
       document.querySelector('.likes-count').textContent = likes;
       document.querySelector('.social__caption').textContent = description;
       document.querySelector('.comments-count').textContent = comments.length;
+
     });
   });
 }
@@ -53,3 +53,4 @@ getArrayComments.forEach(({ name, avatar, message }) => {
 
 });
 socialComments.appendChild(commentsListFragment);
+
