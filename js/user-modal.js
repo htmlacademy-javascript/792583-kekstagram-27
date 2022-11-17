@@ -1,4 +1,5 @@
 import { isEnterKey, isEscapeKey } from './util.js';
+import { resetScale, resetEffects } from './scale-effect.js';
 
 const btnFormLoad = document.querySelector('.img-upload__label');
 const formCreateImage = document.querySelector('.img-upload__overlay');
@@ -21,7 +22,8 @@ function openUserModal() {
 function closeUserModal() {
   formCreateImage.classList.add('hidden');
   documentBody.classList.remove('modal-open');
-
+  resetScale();
+  resetEffects();
   document.addEventListener('keydown', onPopupEscKeydown, { once: true });
 }
 

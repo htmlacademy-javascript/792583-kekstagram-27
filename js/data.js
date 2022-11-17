@@ -2,9 +2,6 @@ import {
   getRandomPositiveInteger,
   getRandomArrayElement,
   createRandomIdFromRangeGenerator
-  // generatePictureId,
-  // generadeCommentId,
-  // generatePicturePhoto,
 } from './util.js';
 
 const MESSAGES = ['Всё отлично!',
@@ -13,6 +10,10 @@ const MESSAGES = ['Всё отлично!',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+  'Только дай знать...где ты находишься.',
+  'Это ты когда? Щас ты дома уже?',
+  'Как тебе удается делать такие фотокарточки?',
+  'Ого!'
 ];
 const NAMES = [
   'Александр',
@@ -33,14 +34,15 @@ const DESCRIPTIONS = [
   'А ты смог бы снять лучше?',
   'Надо повторить',
   'Вот так вот.',
+  'Это вчера. Щас я дома уже!',
+  'Круто да?',
 ];
 const COUNT_OBJECTS = 25;
 const COUNT_MIN_INTEGER = 1;
 const COUNT_MAX_INTEGER = 6;
-const generateCommentAvatar = getRandomPositiveInteger(COUNT_MIN_INTEGER, COUNT_MAX_INTEGER);
-const generatePictureId = createRandomIdFromRangeGenerator(COUNT_MIN_INTEGER, COUNT_OBJECTS);
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
 const generadeCommentId = createRandomIdFromRangeGenerator(COUNT_MIN_INTEGER, 1000);
-const generatePicturePhoto = createRandomIdFromRangeGenerator(COUNT_MIN_INTEGER, COUNT_OBJECTS);
 
 const createComments = () => ({
   id: generadeCommentId(),
@@ -50,13 +52,12 @@ const createComments = () => ({
 });
 
 const getArrayComments = Array.from({ length: getRandomPositiveInteger(COUNT_MIN_INTEGER, COUNT_MAX_INTEGER) }, createComments);
+
 const getRandomObject = (elem, number) => ({
-  // id: generatePictureId(),
   id: number + 1,
-  // url: `photos/${generatePicturePhoto()}.jpg`,
   url: `photos/${number + 1}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomPositiveInteger(15, 200),
+  likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
   comments: Array.from({ length: getRandomPositiveInteger(COUNT_MIN_INTEGER, COUNT_MAX_INTEGER) }, createComments),
 });
 

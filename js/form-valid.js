@@ -9,15 +9,6 @@ const pristine = new Pristine(orderForm, {
   errorTextParent: 'img-upload__text',
 });
 
-const validateTextArea = (value) =>
-  value.length >= MIN_AMOUNT_TEXT && value.length <= MAX_AMOUNT_TEXT;
-
-pristine.addValidator(
-  orderForm.querySelector('#description'),
-  validateTextArea,
-  'От 20 до 140 символов',
-);
-
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
