@@ -1,7 +1,7 @@
 const SCALE_RANGE = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
-const EFFECTS = [
+const PICTURE_FILTERS = [
   {
     name: 'none',
     min: 0,
@@ -90,7 +90,7 @@ const resetScale = () => {
 btnSmaller.addEventListener('click', onBtnSmallerClick);
 btnBigger.addEventListener('click', onBtnBiggerClick);
 
-const DEFAULT_EFFECT = EFFECTS[0];
+const DEFAULT_EFFECT = PICTURE_FILTERS[0];
 let chosenEffect = DEFAULT_EFFECT;
 
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;
@@ -115,7 +115,7 @@ const onFormChange = (evt) => {
   if (!evt.target.classList.contains('effects__radio')) {
     return;
   }
-  chosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
+  chosenEffect = PICTURE_FILTERS.find((effect) => effect.name === evt.target.value);
   updateSlider();
 };
 const onSliderUpdate = () => {

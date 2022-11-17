@@ -5,6 +5,7 @@ const btnFormLoad = document.querySelector('.img-upload__label');
 const formCreateImage = document.querySelector('.img-upload__overlay');
 const documentBody = document.querySelector('body');
 const formCloseBtn = document.querySelector('#upload-cancel');
+const btnFormSend = document.querySelector('#upload-submit');
 
 const onPopupEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -15,6 +16,7 @@ const onPopupEscKeydown = (evt) => {
 function openUserModal() {
   formCreateImage.classList.remove('hidden');
   documentBody.classList.add('modal-open');
+  btnFormSend.disabled = false;
 
   document.addEventListener('keydown', onPopupEscKeydown, { once: true });
 }
